@@ -32,6 +32,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 "Search for anythin from vim
 Plugin 'kien/ctrlp.vim'
+"Git Integration
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 
 
