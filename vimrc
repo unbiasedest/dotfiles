@@ -87,7 +87,9 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " Inserting blank lines while staying in normal mode
-nmap <S-Enter> O<Esc>j
+
+nnoremap <leader>o o<Esc>k
+nnoremap <leader>O O<Esc>j
 
 " Method collapsing
 set foldmethod=indent
