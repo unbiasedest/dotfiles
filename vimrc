@@ -108,6 +108,21 @@ endif
 " show line numbers
 set number
 
+" Toggling absolute/relative line numbers
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+    set relativenumber!
+  else
+    set relativenumber
+    set number!
+  endif
+endfunc
+
+nnoremap <leader>n :call NumberToggle()<cr>
+
+
 "Python style (PEP8) Indentation
 au BufNewFile,BufRead *.py
              \set tabstop=4
