@@ -93,7 +93,8 @@ nnoremap <leader>O O<Esc>j
 
 " fast line copying to system clipboard
 
-nnoremap <leader>c "*yy
+nnoremap <leader>y "*yy
+
 " Method collapsing
 set foldmethod=indent
 set foldlevel=99
