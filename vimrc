@@ -33,8 +33,9 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
 "Git Integration
 Plugin 'tpope/vim-fugitive'
+"Youcompleteme
+Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
-
 filetype plugin indent on 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
