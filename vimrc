@@ -35,6 +35,12 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 "Youcompleteme
 Plugin 'Valloric/YouCompleteMe'
+"Ultisnips
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+"for using YCM and ultisnips together
+Plugin 'ervandew/supertab'
+
 call vundle#end()
 filetype plugin indent on 
 if has("vms")
@@ -95,6 +101,19 @@ let g:SimplyFold_docstring_preview=1
 
 " NerdTREE hotkey
 map <leader>t :NERDTreeToggle<CR>
+
+" UltiSnip hotkey
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+ 
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger= "<leader>u"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " Toggling absolute/relative line numbers
 function! NumberToggle()
