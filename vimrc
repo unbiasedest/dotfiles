@@ -65,7 +65,9 @@ map Q gq
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+"call Flake8 if writing a python file
 autocmd BufWritePost *.py call Flake8()
+
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
@@ -91,6 +93,8 @@ nnoremap <leader>O O<Esc>j
 
 " fast line copying to system clipboard
 nnoremap <leader>y "*yy
+" fast pasting from system clipboard
+nnoremap <leader>p "*p
 
 " Method collapsing
 set foldmethod=indent
@@ -109,6 +113,7 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
  
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger= "<leader>u"
+let g:UltiSnipsListSnippets= "<leader>s"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
@@ -147,6 +152,12 @@ set showmatch
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
 
+" LaTeX macros for compiling and viewing
+augroup latex_macros " {
+    autocmd!
+    autocmd FileType tex :nnoremap <leader>c :w<CR>:!latexmk -pdf %<CR>
+    autocmd FileType tex :nnoremap <leader>v :!evince %:r.pdf &<CR><CR>
+augroup END " }
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
