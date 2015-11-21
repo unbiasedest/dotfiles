@@ -35,13 +35,19 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 "Youcompleteme
 Plugin 'Valloric/YouCompleteMe'
+
 "Ultisnips
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 "for using YCM and ultisnips together
 Plugin 'ervandew/supertab'
 
+"surrondings
+Plugin 'tpope/vim-surround'
+
 call vundle#end()
+
+
 filetype plugin indent on 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
@@ -80,7 +86,6 @@ endif
 " Defining split window view behavior enabled by :vs and :sv
 set splitbelow
 set splitright
-
 " Jumping between splits
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -112,8 +117,8 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
  
 " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger= "<leader>u"
-let g:UltiSnipsListSnippets= "<leader>s"
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
@@ -153,10 +158,12 @@ set showmatch
 let python_highlight_all = 1
 
 " LaTeX macros for compiling and viewing
+
+command TexView execute "silent !evince %:r.pdf > /dev/null 2>&1 & " | redraw!
 augroup latex_macros " {
     autocmd!
     autocmd FileType tex :nnoremap <leader>c :w<CR>:!latexmk -pdf %<CR>
-    autocmd FileType tex :nnoremap <leader>v :!evince %:r.pdf &<CR><CR>
+    autocmd FileType tex :nnoremap <leader>v :TexView<CR>
 augroup END " }
 
 " Convenient command to see the difference between the current buffer and the
