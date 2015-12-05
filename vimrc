@@ -161,6 +161,10 @@ set number
 "UTF8 encoding
 set encoding=utf-8
 
+"spellchecking
+nnoremap <leader>sd :setlocal spell! spelllang=de_de<CR>
+nnoremap <leader>se :setlocal spell! spelllang=en_us<CR>
+
 " show the matching part of the pair for [] {} and ()
 set showmatch
 
