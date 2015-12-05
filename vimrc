@@ -145,6 +145,16 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
+"Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " Show absolute line numbers on startup
 set number
 
