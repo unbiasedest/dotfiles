@@ -47,8 +47,10 @@ Plugin 'tpope/vim-surround'
 
 call vundle#end()
 
-
+" indentation
 filetype plugin indent on 
+set ts=4 sts=4 sw=4 expandtab
+
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
 else
@@ -96,6 +98,9 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <leader>o o<Esc>k
 nnoremap <leader>O O<Esc>j
 
+" Toggling listing of tabs/spaces
+nnoremap <leader>l :set list!<CR>
+set listchars=tab:▸\ ,eol:¬
 " fast line copying to system clipboard
 nnoremap <leader>y "*yy
 " fast pasting from system clipboard
