@@ -80,6 +80,8 @@ autocmd BufWritePost *.py call Flake8()
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
+"Make it possible to undo CTRL-W
+inoremap <C-w> <C-g>u<C-w>
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=a
@@ -206,6 +208,3 @@ python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
 set laststatus=2
-
-
-
