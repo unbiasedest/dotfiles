@@ -10,6 +10,8 @@ if which tmux >/dev/null 2>&1; then
     done
 fi
 
+#vi-mode in bash
+set -o vi
 #use separate alias file
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
@@ -24,8 +26,6 @@ export PATH=/mnt/work/Latex/texlive/2014/bin/x86_64-linux:$PATH
 export MANPATH=/mnt/work/Latex/texlive/2014/texmf/doc/man:$MANPATH
 export INFOPATH=/mnt/work/Latex/texlive/2014/texmf/doc/info:$INFOPATH
 
-#vim rules!
-set editing-mode vi
 #autojump
 [[ -s /usr/share/autojump/autojump.bash ]] && . /usr/share/autojump/autojump.bash
 #powerline
