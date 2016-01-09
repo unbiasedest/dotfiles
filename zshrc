@@ -22,7 +22,7 @@ compinit
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
-setopt appendhistory autocd extendedglob nomatch 
+setopt inc_append_history autocd extendedglob nomatch 
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
