@@ -45,6 +45,10 @@ Plugin 'ervandew/supertab'
 "surrondings
 Plugin 'tpope/vim-surround'
 
+"Notes
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-notes'
+
 call vundle#end()
 
 " indentation
@@ -123,6 +127,11 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
  
+" Note hotkeys and options
+nnoremap <leader>nn :Note
+nnoremap <leader>ns :SearchNotes
+:let g:notes_directories = ['~/owncloud/notes']
+:let g:notes_suffix = '.txt'
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsListSnippets="<c-l>"
@@ -134,7 +143,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Toggling absolute/relative line numbers
 function! NumberToggle()
-  if(&relativenumber == 1)
+  if(&relativenumker == 1)
     set number
     set relativenumber!
   else
@@ -143,7 +152,7 @@ function! NumberToggle()
   endif
 endfunc
 
-nnoremap <leader>n :call NumberToggle()<cr>
+nnoremap <leader>r :call NumberToggle()<cr>
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.

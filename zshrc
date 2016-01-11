@@ -51,3 +51,11 @@ fi
 if [[ -r /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
     source /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
+ # Opens a note
+n() {
+    vim -c ":Note $*" 
+    }
+# Searches Notes
+ns() {
+    ls -c ~/owncloud/notes | egrep -i "$*"
+    }
