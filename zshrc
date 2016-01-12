@@ -1,4 +1,4 @@
-export TERM="xterm-256color"
+export TERM="xterm-256color-italic"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export PATH=$HOME/anaconda3/bin:$PATH
