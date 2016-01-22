@@ -111,6 +111,8 @@ set listchars=tab:▸\ ,eol:¬
 nnoremap <leader>y "*yy
 " fast pasting from system clipboard
 nnoremap <leader>p "*p
+" show all marks, e. g. for use in tex files
+nnoremap <leader>m :marks<CR>
 
 " Method collapsing
 set foldmethod=indent
@@ -131,7 +133,7 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 nnoremap <leader>nn :Note
 nnoremap <leader>ns :SearchNotes
 :let g:notes_directories = ['~/owncloud/notes']
-:let g:notes_suffix = '.txt'
+" :let g:notes_suffix = '.txt'
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsListSnippets="<c-l>"
@@ -143,7 +145,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Toggling absolute/relative line numbers
 function! NumberToggle()
-  if(&relativenumker == 1)
+  if(&relativenumber == 1)
     set number
     set relativenumber!
   else
