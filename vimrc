@@ -26,15 +26,10 @@ Plugin 'scrooloose/syntastic'
 Plugin 'nvie/vim-flake8'
 "Color scheme
 Plugin 'jnurmine/Zenburn'
-"File Browser
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
 "Search for anythin from vim
 Plugin 'kien/ctrlp.vim'
 "Git Integration
 Plugin 'tpope/vim-fugitive'
-"Youcompleteme
-Plugin 'Valloric/YouCompleteMe'
 
 "Ultisnips
 Plugin 'SirVer/ultisnips'
@@ -45,9 +40,14 @@ Plugin 'ervandew/supertab'
 "surrondings
 Plugin 'tpope/vim-surround'
 
+"autoclose brackets
+Plugin 'Raimondi/delimitMate'
 "Notes
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
+
+"Latex Folding
+Plugin 'matze/vim-tex-fold'
 
 call vundle#end()
 
@@ -73,9 +73,6 @@ map Q gq
 "Leader key
 :let mapleader = ' '
 
-"YCM-customization
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "call Flake8 if writing a python file
 autocmd BufWritePost *.py call Flake8()
@@ -172,7 +169,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-let g:syntastic_tex_chktex_args = "--nowarn3"
+"Disable certain latex warnings
+"let g:syntastic_tex_chktex_args = "--nowarn3 --nowarn40"
+"Disable syntax check for latex
+let g:syntastic_tex_checkers = ['']
 
 " Show absolute line numbers on startup
 set number
