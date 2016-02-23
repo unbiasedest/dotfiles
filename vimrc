@@ -118,8 +118,8 @@ nnoremap <leader> za
 "show docstring of collapsed method
 let g:SimplyFold_docstring_preview=1
 
-" NerdTREE hotkey
-map <leader>t :NERDTreeToggle<CR>
+" File explorer hotkey
+map <leader>e :Explore<CR>
 
 " UltiSnip hotkey
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -192,10 +192,10 @@ let python_highlight_all = 1
 
 " LaTeX macros for compiling and viewing
 
-command TexView execute "silent !evince %:r.pdf > /dev/null 2>&1 & " | redraw!
+command TexView execute "silent !zathura %:r.pdf > /dev/null 2>&1 & " | redraw!
 augroup latex_macros " {
     autocmd!
-    autocmd FileType tex :nnoremap <leader>c :w<CR>:!latexmk -pdf %<CR>
+    autocmd FileType tex :nnoremap <leader>c :w<CR>:!latexmk -pdf -synctex=1 %<CR>
     autocmd FileType tex :nnoremap <leader>v :TexView<CR>
 augroup END " }
 
