@@ -49,6 +49,9 @@ Plugin 'xolox/vim-notes'
 "Latex Folding
 Plugin 'matze/vim-tex-fold'
 
+"Nerdtree
+Plugin 'scrooloose/nerdtree'
+
 call vundle#end()
 
 " indentation
@@ -88,6 +91,8 @@ if has('mouse')
   set mouse=a
 endif
 
+"default window size
+set lines=35 columns=150
 " Defining split window view behavior enabled by :vs and :sv
 set splitbelow
 set splitright
@@ -110,7 +115,17 @@ nnoremap <leader>y "*yy
 nnoremap <leader>p "*p
 " show all marks, e. g. for use in tex files
 nnoremap <leader>m :marks<CR>
-
+" reload vimrc
+nnoremap <leader>so :source ~/.vimrc<CR>
+" Toggling colorcolumn
+function! ColumnToggle()
+  if(&colorcolumn != 0)
+    set colorcolumn=0
+  else
+    set colorcolumn=80
+  endif
+endfunc
+nnoremap <leader>f :call ColumnToggle()<CR>
 " Method collapsing
 set foldmethod=indent
 set foldlevel=99
@@ -119,7 +134,8 @@ nnoremap <leader> za
 let g:SimplyFold_docstring_preview=1
 
 " File explorer hotkey
-map <leader>e :Explore<CR>
+"map <leader>e :Explore<CR>
+map <leader>e :NerdTreeToggle
 
 " UltiSnip hotkey
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -195,7 +211,7 @@ let python_highlight_all = 1
 command TexView execute "silent !zathura %:r.pdf > /dev/null 2>&1 & " | redraw!
 augroup latex_macros " {
     autocmd!
-    autocmd FileType tex :nnoremap <leader>c :w<CR>:!latexmk -pdf -synctex=1 %<CR>
+    autocmd FileType tex :nnoremap <leader>c :w<CR>:!latexmk -pdf -synctex=1 -shell-escape %<CR>
     autocmd FileType tex :nnoremap <leader>v :TexView<CR>
 augroup END " }
 
