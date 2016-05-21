@@ -2,6 +2,7 @@ export TERM="xterm-256color-italic"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export PATH=$HOME/anaconda3/bin:$PATH
+export KEYTIMEOUT=20
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completions 1
@@ -28,9 +29,30 @@ bindkey -v
 
 #prompt
 
+# edit command line
+autoload -Uz edit-command-line
+vim_ins_mode="%{$fg[cyan]%}[i]%{$reset_color%}"
+vim_cmd_mode="%{$fg[green]%}[n]%{$reset_color%}"
 
-PROMPT='%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%}: '
+function zle-keymap-select() {
+    zle reset-prompt
+    zle -R
+vim_mode="${${KEYMAP/vicmd/${vim_cmd_mode}}/(main|viins)/${vim_ins_mode}}"
+    }
+zle -N zle-keymap-select
 
+
+# Fix a bug when you C-c in CMD mode and you'd be prompted with CMD mode indicator, while in fact you would be in INS mode
+# Fixed by catching SIGINT (C-c), set vim_mode to INS and then repropagate the SIGINT, so if anything else depends on it, we will not break it
+ function TRAPINT() {
+   vim_mode=$vim_ins_mode
+   zle && zle reset-prompt
+     return $(( 128 + $1 ))
+     }
+
+# don't display PROMPT for previously accepted lines; only display it next to current line
+autoload -U colors && colors
+PROMPT="%{$fg_bold[blue]%}%n%{$reset_color%}%{$fg[blue]%}(%m%)%{$reset_color%}> "
 #use separate alias file
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
@@ -41,16 +63,12 @@ if which tmux >/dev/null 2>&1; then
     # if no session is started, start a new session
     test -z ${TMUX} && tmux
 
-    # when quitting tmux, try to attach
-    while test -z ${TMUX}; do
-        tmux attach || break
-    done
 fi
 
 #Powerline
-if [[ -r /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
-    source /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-fi
+#if [[ -r /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+#    source /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+#fi
  # Opens a note
 n() {
     vim -c ":Note $*" 
