@@ -135,7 +135,7 @@ let g:SimplyFold_docstring_preview=1
 
 " File explorer hotkey
 "map <leader>e :Explore<CR>
-map <leader>e :NerdTreeToggle
+map <leader>e :NERDTreeToggle<CR>
 
 " UltiSnip hotkey
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -193,6 +193,9 @@ let g:syntastic_tex_checkers = ['']
 " Show absolute line numbers on startup
 set number
 
+"allow working with hidden buffers
+set hidden
+
 "UTF8 encoding
 set encoding=utf-8
 
@@ -215,6 +218,11 @@ augroup latex_macros " {
     autocmd FileType tex :nnoremap <leader>v :TexView<CR>
 augroup END " }
 
+function! SyncTexForward()
+     let execstr = "silent !okular --unique %:p:r.pdf\\#src:".line(".")."%:p &"
+     exec execstr
+endfunction
+nmap <Leader>f :call SyncTexForward()<CR>
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
