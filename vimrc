@@ -46,9 +46,8 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
 
-"Latex Folding
-Plugin 'matze/vim-tex-fold'
-
+"Latex-Box
+Plugin 'LaTeX-Box-Team/LaTeX-Box' 
 "Nerdtree
 Plugin 'scrooloose/nerdtree'
 
@@ -117,15 +116,8 @@ nnoremap <leader>p "*p
 nnoremap <leader>m :marks<CR>
 " reload vimrc
 nnoremap <leader>so :source ~/.vimrc<CR>
-" Toggling colorcolumn
-function! ColumnToggle()
-  if(&colorcolumn != 0)
-    set colorcolumn=0
-  else
-    set colorcolumn=80
-  endif
-endfunc
-nnoremap <leader>f :call ColumnToggle()<CR>
+
+
 " Method collapsing
 set foldmethod=indent
 set foldlevel=99
@@ -208,21 +200,32 @@ set showmatch
 
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
+" change default Tex filetype
+let g:tex_flavor = "latex"
 
 " LaTeX macros for compiling and viewing
 
-command TexView execute "silent !zathura %:r.pdf > /dev/null 2>&1 & " | redraw!
+let g:LatexBox_latexmk_options
+            \ = "-pdflatex='pdflatex -synctex=1 \%O \%S'"
+let g:LatexBox_viewer = 'okular'
 augroup latex_macros " {
     autocmd!
-    autocmd FileType tex :nnoremap <leader>c :w<CR>:!latexmk -pdf -synctex=1 -shell-escape %<CR>
-    autocmd FileType tex :nnoremap <leader>v :TexView<CR>
+    " compile
+    autocmd FileType tex :nnoremap <leader>c :w<CR>:Latexmk<CR>
+    " open okular
+    autocmd FileType tex :nnoremap <leader>v :LatexView<CR>
+    " open/close Table of Contents
+    autocmd FileType tex :nnoremap <leader>t :LatexTOCToggle<CR>
+    " Enable opening okular at the current cursor position from vim
+    function! SyncTexForward()
+        let s:syncfile = fnamemodify(fnameescape(LatexBox_GetOutputFile()), ":r").".pdf"
+        let execstr = "silent !okular --unique ".s:syncfile."\\#src:".line(".").expand("%\:p").' &'
+        exec execstr
+    endfunction
+    nnoremap <Leader>f :call SyncTexForward()<CR>:sleep 200m<CR>:redraw!<CR>
+
 augroup END " }
 
-function! SyncTexForward()
-     let execstr = "silent !okular --unique %:p:r.pdf\\#src:".line(".")."%:p &"
-     exec execstr
-endfunction
-nmap <Leader>f :call SyncTexForward()<CR>
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
