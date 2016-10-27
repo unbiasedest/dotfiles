@@ -232,7 +232,10 @@ augroup END " }
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
-endif
+endi
+
+"script for copying results from clipboard quickly
+nnoremap <Leader>g "*pkdd :w<CR> :bw<CR>
 
 "colorscheme
 set t_Co=256
@@ -242,7 +245,6 @@ highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
 
 " Powerline
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+set rtp+=/usr/lib/python3.5/site-packages/powerline/bindings/vim/
+let g:powerline_pycmd = "py3"
 set laststatus=2
