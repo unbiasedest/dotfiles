@@ -9,3 +9,9 @@
 *.out
 *.toc
 *.aux
+*.fls
+*.fdb_latexmk
+*.log
+*.synctex.gz
+# compiled latex files
+*.pdf
