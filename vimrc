@@ -26,15 +26,10 @@ Plugin 'scrooloose/syntastic'
 Plugin 'nvie/vim-flake8'
 "Color scheme
 Plugin 'jnurmine/Zenburn'
-"File Browser
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
 "Search for anythin from vim
 Plugin 'kien/ctrlp.vim'
 "Git Integration
 Plugin 'tpope/vim-fugitive'
-"Youcompleteme
-Plugin 'Valloric/YouCompleteMe'
 
 "Ultisnips
 Plugin 'SirVer/ultisnips'
@@ -44,6 +39,20 @@ Plugin 'ervandew/supertab'
 
 "surrondings
 Plugin 'tpope/vim-surround'
+
+"autoclose brackets
+Plugin 'Raimondi/delimitMate'
+"Notes
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-notes'
+
+"Latex-Box
+Plugin 'LaTeX-Box-Team/LaTeX-Box' 
+"Nerdtree
+Plugin 'scrooloose/nerdtree'
+"Airline
+Plugin 'vim-airline/vim-airline'
+
 
 call vundle#end()
 
@@ -69,9 +78,6 @@ map Q gq
 "Leader key
 :let mapleader = ' '
 
-"YCM-customization
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "call Flake8 if writing a python file
 autocmd BufWritePost *.py call Flake8()
@@ -87,6 +93,8 @@ if has('mouse')
   set mouse=a
 endif
 
+"default window size
+set lines=35 columns=150
 " Defining split window view behavior enabled by :vs and :sv
 set splitbelow
 set splitright
@@ -107,6 +115,11 @@ set listchars=tab:▸\ ,eol:¬
 nnoremap <leader>y "*yy
 " fast pasting from system clipboard
 nnoremap <leader>p "*p
+" show all marks, e. g. for use in tex files
+nnoremap <leader>m :marks<CR>
+" reload vimrc
+nnoremap <leader>so :source ~/.vimrc<CR>
+
 
 " Method collapsing
 set foldmethod=indent
@@ -115,14 +128,20 @@ nnoremap <leader> za
 "show docstring of collapsed method
 let g:SimplyFold_docstring_preview=1
 
-" NerdTREE hotkey
-map <leader>t :NERDTreeToggle<CR>
+" File explorer hotkey
+"map <leader>e :Explore<CR>
+map <leader>e :NERDTreeToggle<CR>
 
 " UltiSnip hotkey
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
  
+" Note hotkeys and options
+nnoremap <leader>nn :Note
+nnoremap <leader>ns :SearchNotes
+:let g:notes_directories = ['~/ownCloud/notes']
+" :let g:notes_suffix = '.txt'
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsListSnippets="<c-l>"
@@ -143,7 +162,7 @@ function! NumberToggle()
   endif
 endfunc
 
-nnoremap <leader>n :call NumberToggle()<cr>
+nnoremap <leader>r :call NumberToggle()<cr>
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -161,10 +180,16 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-let g:syntastic_tex_chktex_args = "--nowarn3"
+"Disable certain latex warnings
+"let g:syntastic_tex_chktex_args = "--nowarn3 --nowarn40"
+"Disable syntax check for latex
+let g:syntastic_tex_checkers = ['']
 
 " Show absolute line numbers on startup
 set number
+
+"allow working with hidden buffers
+set hidden
 
 "UTF8 encoding
 set encoding=utf-8
@@ -178,14 +203,30 @@ set showmatch
 
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
+" change default Tex filetype
+let g:tex_flavor = "latex"
 
 " LaTeX macros for compiling and viewing
 
-command TexView execute "silent !evince %:r.pdf > /dev/null 2>&1 & " | redraw!
+let g:LatexBox_latexmk_options
+            \ = "-pdflatex='pdflatex -synctex=1 \%O \%S'"
+let g:LatexBox_viewer = 'okular'
 augroup latex_macros " {
     autocmd!
-    autocmd FileType tex :nnoremap <leader>c :w<CR>:!latexmk -pdf %<CR>
-    autocmd FileType tex :nnoremap <leader>v :TexView<CR>
+    " compile
+    autocmd FileType tex :nnoremap <leader>c :w<CR>:Latexmk<CR>
+    " open okular
+    autocmd FileType tex :nnoremap <leader>v :LatexView<CR>
+    " open/close Table of Contents
+    autocmd FileType tex :nnoremap <leader>t :LatexTOCToggle<CR>
+    " Enable opening okular at the current cursor position from vim
+    function! SyncTexForward()
+        let s:syncfile = fnamemodify(fnameescape(LatexBox_GetOutputFile()), ":r").".pdf"
+        let execstr = "silent !okular --unique ".s:syncfile."\\#src:".line(".").expand("%\:p").' &'
+        exec execstr
+    endfunction
+    nnoremap <Leader>f :call SyncTexForward()<CR>:sleep 200m<CR>:redraw!<CR>
+
 augroup END " }
 
 " Convenient command to see the difference between the current buffer and the
@@ -194,7 +235,10 @@ augroup END " }
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
-endif
+endi
+
+"script for copying results from clipboard quickly
+nnoremap <Leader>g "*pkdd :w<CR> :bw<CR>
 
 "colorscheme
 set t_Co=256
@@ -204,7 +248,7 @@ highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
 
 " Powerline
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
+set noshowmode

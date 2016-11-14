@@ -1,0 +1,29 @@
+snippet qu "Creates a question and answer item" 
+\item[${1:question}]
+${2:answer}
+%
+endsnippet
+snippet tabx "Creates a tabx table with two columns" 
+\begin{tabularx}{\textwidth}{${1:|X|X|}}
+	\hline $2 & $3 \\\
+	\hline 
+\end{tabularx}
+endsnippet
+snippet ceq "Conditional equation" b
+\begin{equation}
+${1:eq} = 
+\begin{cases}
+	$2 & \text{for } $3 \in [$4] \\\
+	$5 & \text{otherwise}
+\end{cases}
+\end{equation}
+endsnippet
+snippet si "Insert SI-Unit from siunitx package"
+\SI{${1:value}}{\\${2:unit}}
+endsnippet
+
+snippet tpic "TikZ Environment"
+\begin{tikzpicture}
+	$1;
+\end{tikzpicture}
+endsnippet

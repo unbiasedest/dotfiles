@@ -1,0 +1,17 @@
+# to use this, run git config --global core.excludesfile ~/dotfiles/gitignore
+# vim temporary files
+*~
+*.swp
+*.swo
+# tex compilation files 
+*.lof
+*.lot
+*.out
+*.toc
+*.aux
+*.fls
+*.fdb_latexmk
+*.log
+*.synctex.gz
+# compiled latex files
+*.pdf
