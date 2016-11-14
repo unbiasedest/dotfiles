@@ -251,6 +251,8 @@ highlight nonText ctermbg=NONE
 " Powerline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#whitespace#enabled = 0
 set laststatus=2
 set noshowmode
 let g:tmuxline_preset = 'tmux'
