@@ -52,12 +52,13 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'scrooloose/nerdtree'
 "Airline
 Plugin 'vim-airline/vim-airline'
+Plugin 'edkolev/tmuxline.vim'
 
 
 call vundle#end()
 
 " indentation
-filetype plugin indent on 
+filetype plugin indent on
 set ts=4 sts=4 sw=4 expandtab
 
 if has("vms")
@@ -252,3 +253,4 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 set noshowmode
+let g:tmuxline_preset = 'tmux'
