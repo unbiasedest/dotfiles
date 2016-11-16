@@ -2,8 +2,8 @@ export TERM="xterm-256color"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export PATH=$HOME/anaconda3/bin:$PATH
-export PATH=$PATH:$HOME/scripts
-export PYTHONPATH=$PYTHONPATH:$HOME/owncloud/university/studienarbeit/scripts
+export PATH=$PATH:$HOME/ownCloud/scripts
+export PYTHONPATH=$PYTHONPATH:$HOME/ownCloud/university/studienarbeit/scripts
 export QEMU_AUDIO_DRV=alsa
 export KEYTIMEOUT=20
 # The following lines were added by compinstall
@@ -67,27 +67,20 @@ if which tmux >/dev/null 2>&1; then
     test -z ${TMUX} && tmux
 
 fi
-
-#Powerline
-#if [[ -r /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
-#    source /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-#fi
  # Opens a note
 n() {
     vim -c ":Note $*" 
     }
 # Searches Notes
+# note content
 ns() {
-    ls -c ~/owncloud/notes | egrep -i "$*"
+    grep -Ri "$*" ~/ownCloud/notes
+    }
+# note title
+nst() {
+    ls -c ~/ownCloud/notes | egrep -i "$*"
     }
 
-### ZNT's installer added snippet ###
-fpath=( "$fpath[@]" "$HOME/.config/znt/zsh-navigation-tools" )
-autoload n-aliases n-cd n-env n-functions n-history n-kill n-list n-list-draw n-list-input n-options n-panelize
-autoload znt-usetty-wrapper znt-history-widget znt-cd-widget znt-kill-widget
-alias naliases=n-aliases ncd=n-cd nenv=n-env nfunctions=n-functions nhistory=n-history
-alias nkill=n-kill noptions=n-options npanelize=n-panelize
-zle -N znt-history-widget
-bindkey '^R' znt-history-widget
-setopt AUTO_PUSHD HIST_IGNORE_DUPS PUSHD_IGNORE_DUPS
-### END ###
+
+# syntax highlighting
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
