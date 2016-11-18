@@ -84,3 +84,27 @@ nst() {
 
 # syntax highlighting
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Enable highlighters
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+# Override highlighter colors
+ZSH_HIGHLIGHT_STYLES[default]=none
+ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,bould
+ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=green
+ZSH_HIGHLIGHT_STYLES[alias]=fg=white,bold
+ZSH_HIGHLIGHT_STYLES[builtin]=fg=white,bold
+ZSH_HIGHLIGHT_STYLES[function]=fg=white,bold
+ZSH_HIGHLIGHT_STYLES[command]=fg=white,bold
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=none
+ZSH_HIGHLIGHT_STYLES[commandseparator]=blue
+ZSH_HIGHLIGHT_STYLES[hashed-command]=fg=none
+ZSH_HIGHLIGHT_STYLES[path]=fg=none
+ZSH_HIGHLIGHT_STYLES[globbing]=fg=blue,bold
+ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=white,underline
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=none
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=none
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=none
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=yellow
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=orange
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=009
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=cyan
+ZSH_HIGHLIGHT_STYLES[assign]=none

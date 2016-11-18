@@ -27,3 +27,15 @@ snippet tpic "TikZ Environment"
 	$1;
 \end{tikzpicture}
 endsnippet
+
+snippet im "inline math"
+\( $1 \)
+endsnippet
+snippet circ
+\begin{figure}[htpb]
+	\centering
+	\includestandalone[width= $1 \textwidth]{fig/$2}
+	\caption{$3}
+	\label{fig:$4}
+\end{figure}
+endsnippet

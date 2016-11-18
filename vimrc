@@ -131,7 +131,7 @@ let g:SimplyFold_docstring_preview=1
 
 " File explorer hotkey
 "map <leader>e :Explore<CR>
-map <leader>e :NERDTreeToggle<CR>
+map <leader>t :NERDTreeToggle<CR>
 
 " UltiSnip hotkey
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -219,7 +219,7 @@ augroup latex_macros " {
     " open okular
     autocmd FileType tex :nnoremap <leader>v :LatexView<CR>
     " open/close Table of Contents
-    autocmd FileType tex :nnoremap <leader>t :LatexTOCToggle<CR>
+    "autocmd FileType tex :nnoremap <leader>t :LatexTOCToggle<CR>
     " Enable opening okular at the current cursor position from vim
     function! SyncTexForward()
         let s:syncfile = fnamemodify(fnameescape(LatexBox_GetOutputFile()), ":r").".pdf"
