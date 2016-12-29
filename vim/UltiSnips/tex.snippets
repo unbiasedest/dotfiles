@@ -9,6 +9,15 @@ snippet tabx "Creates a tabx table with two columns"
 	\hline 
 \end{tabularx}
 endsnippet
+snippet csvtab "read in csv table"
+\csvreader[tabular=${1:c c c},
+			table head= ${1: a b c },
+			] %optionen/header
+			{tab/$3}%File
+			{}%Spaltenzuordnung
+			{}%Tabellenzeile
+
+endsnippet
 snippet ceq "Conditional equation" b
 \begin{equation}
 ${1:eq} = 
@@ -31,11 +40,24 @@ endsnippet
 snippet im "inline math"
 \( $1 \)
 endsnippet
-snippet circ
+snippet cfig
 \begin{figure}[htpb]
 	\centering
-	\includestandalone[width= $1 \textwidth]{fig/$2}
+	\includestandalone[width=$1\textwidth]{fig/$2}
 	\caption{$3}
 	\label{fig:$4}
 \end{figure}
+endsnippet
+
+snippet pfig "figure generated with python"
+\begin{figure}[htbp]
+	\centering
+	\input{fig/$1.pgf}
+	\caption{$2}
+	\label{fig:$3}
+\end{figure}
+endsnippet
+
+snippet lrb "left/right brackets"
+\left( $1 \right)
 endsnippet

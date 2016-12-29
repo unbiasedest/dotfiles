@@ -133,16 +133,16 @@ let g:SimplyFold_docstring_preview=1
 "map <leader>e :Explore<CR>
 map <leader>t :NERDTreeToggle<CR>
 
+"Fast buffer switching
+map <leader>n :bn<CR>
+map <leader>N :bp<CR>
 " UltiSnip hotkey
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
  
 " Note hotkeys and options
-nnoremap <leader>nn :Note
-nnoremap <leader>ns :SearchNotes
 :let g:notes_directories = ['~/ownCloud/notes']
-" :let g:notes_suffix = '.txt'
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsListSnippets="<c-l>"
@@ -185,6 +185,8 @@ let g:syntastic_check_on_wq = 0
 "let g:syntastic_tex_chktex_args = "--nowarn3 --nowarn40"
 "Disable syntax check for latex
 let g:syntastic_tex_checkers = ['']
+"python syntax
+let g:syntastic_python_checkers = ['flake8']
 
 " Show absolute line numbers on startup
 set number

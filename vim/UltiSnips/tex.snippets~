@@ -21,3 +21,34 @@ endsnippet
 snippet si "Insert SI-Unit from siunitx package"
 \SI{${1:value}}{\\${2:unit}}
 endsnippet
+
+snippet tpic "TikZ Environment"
+\begin{tikzpicture}
+	$1;
+\end{tikzpicture}
+endsnippet
+
+snippet im "inline math"
+\( $1 \)
+endsnippet
+snippet cfig
+\begin{figure}[htpb]
+	\centering
+	\includestandalone[width=$1\textwidth]{fig/$2}
+	\caption{$3}
+	\label{fig:$4}
+\end{figure}
+endsnippet
+
+snippet pfig "figure generated with python"
+\begin{figure}[htbp]
+	\centering
+	\input{fig/$1.pgf}
+	\caption{$2}
+	\label{fig:$3}
+\end{figure}
+endsnippet
+
+snippet lrb "left/right brackets"
+\left( $1 \right)
+endsnippet
