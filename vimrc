@@ -37,9 +37,11 @@ Plugin 'honza/vim-snippets'
 "for using YCM and ultisnips together
 Plugin 'ervandew/supertab'
 
-"surrondings
+"surroundings
 Plugin 'tpope/vim-surround'
 
+"repeat surroundings
+Plugin 'tpope/vim-repeat'
 "autoclose brackets
 Plugin 'Raimondi/delimitMate'
 "Notes
@@ -50,6 +52,8 @@ Plugin 'xolox/vim-notes'
 Plugin 'LaTeX-Box-Team/LaTeX-Box' 
 "Nerdtree
 Plugin 'scrooloose/nerdtree'
+"physical scrolling
+Plugin 'yuttie/comfortable-motion.vim'
 "Airline
 Plugin 'vim-airline/vim-airline'
 Plugin 'edkolev/tmuxline.vim'
@@ -249,6 +253,10 @@ set background=dark
 colorscheme zenburn
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
+
+"physical scrolling config
+let g:comfortable_motion_friction = 200.0
+let g:comfortable_motion_air_drag = 0.0
 
 " Powerline
 let g:airline_powerline_fonts = 1
