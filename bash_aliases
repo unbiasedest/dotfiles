@@ -1,4 +1,5 @@
-alias nortonssh='ssh pi@192.168.0.101'
+alias nortonssh='ssh -Y pi@192.168.0.101'
+alias nortonvnc='vncviewer norton:1' 
 alias ipnb='cd $HOME/ownCloud/python/notebooks/ && jupyter notebook'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'

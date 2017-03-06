@@ -47,9 +47,13 @@ Plugin 'Raimondi/delimitMate'
 "Notes
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
+"Orgmode
+Plugin 'jceb/vim-orgmode'
 
 "Latex-Box
 Plugin 'LaTeX-Box-Team/LaTeX-Box' 
+"Folding for Latex
+Plugin 'matze/vim-tex-fold'
 "Nerdtree
 Plugin 'scrooloose/nerdtree'
 "physical scrolling

@@ -31,11 +31,6 @@ snippet si "Insert SI-Unit from siunitx package"
 \SI{${1:value}}{\\${2:unit}}
 endsnippet
 
-snippet tpic "TikZ Environment"
-\begin{tikzpicture}
-	$1;
-\end{tikzpicture}
-endsnippet
 
 snippet im "inline math"
 \( $1 \)
@@ -49,7 +44,7 @@ snippet cfig
 \end{figure}
 endsnippet
 
-snippet pfig "figure generated with python"
+snippet pyfig "figure generated with python"
 \begin{figure}[htbp]
 	\centering
 	\input{fig/$1.pgf}
