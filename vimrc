@@ -189,12 +189,14 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-"Disable certain latex warnings
-"let g:syntastic_tex_chktex_args = "--nowarn3 --nowarn40"
 "Disable syntax check for latex
 let g:syntastic_tex_checkers = ['']
+"ignore compilation files from latex in autocomplete and pdf files
+set wildignore +=*run.xml,*.aux,**.bcf,*.blg,*.fdb_latexmk,*.fls,*.sta,*.synctex.gz,*.pdf
 "python syntax
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_checker_args = "--ignore=E402"
+let g:pep8_ignore="E402"
 
 " Show absolute line numbers on startup
 set number
@@ -218,7 +220,11 @@ let python_highlight_all = 1
 let g:tex_flavor = "latex"
 
 " LaTeX macros for compiling and viewing
-
+" ignore certain warnings
+let g:LatexBox_quickfix = 2
+let g:LatexBox_ignore_warnings
+            \ = ['Fancyhdr', 'Underfull', 'Overfull', 'specifier changed to']
+"Compilation
 let g:LatexBox_latexmk_options
             \ = "-pdflatex='pdflatex -synctex=1 \%O \%S'"
 let g:LatexBox_viewer = 'okular'
