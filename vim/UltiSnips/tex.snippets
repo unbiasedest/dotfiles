@@ -35,7 +35,7 @@ endsnippet
 snippet im "inline math"
 \( $1 \)
 endsnippet
-snippet cfig
+snippet cfig "circuits drawn with tikz"
 \begin{figure}[htpb]
 	\centering
 	\includestandalone[width=$1\textwidth]{fig/$2}
@@ -55,4 +55,15 @@ endsnippet
 
 snippet lrb "left/right brackets"
 \left( $1 \right)
+endsnippet
+
+
+snippet ar "autoref shorthand"
+\autoref{$1}
+endsnippet
+snippet er "eqref shorthand"
+\eqref{$1}
+endsnippet
+snippet cn "circuittikz node shorthand"
+node[${1:type}](${2:name}){${3:text}}
 endsnippet

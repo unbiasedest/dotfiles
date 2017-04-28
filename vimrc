@@ -107,11 +107,6 @@ set lines=35 columns=150
 " Defining split window view behavior enabled by :vs and :sv
 set splitbelow
 set splitright
-" Jumping between splits
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 " Inserting blank lines while staying in normal mode
 nnoremap <leader>o o<Esc>k
@@ -218,6 +213,10 @@ set showmatch
 let python_highlight_all = 1
 " change default Tex filetype
 let g:tex_flavor = "latex"
+" fix indent
+autocmd FileType python :nnoremap <leader>i Jr
+" insert spaces after comma
+autocmd FileType python :nnoremap <leader>k :%s/,\(\S\)/, \1/g<CR>
 
 " LaTeX macros for compiling and viewing
 " ignore certain warnings
@@ -242,7 +241,7 @@ augroup latex_macros " {
         let execstr = "silent !okular --unique ".s:syncfile."\\#src:".line(".").expand("%\:p").' &'
         exec execstr
     endfunction
-    nnoremap <Leader>f :call SyncTexForward()<CR>:sleep 200m<CR>:redraw!<CR>
+    autocmd FileType tex :nnoremap <Leader>f :call SyncTexForward()<CR>:sleep 200m<CR>:redraw!<CR>
 
 augroup END " }
 
