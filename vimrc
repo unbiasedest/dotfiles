@@ -146,6 +146,7 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
  
 " Note hotkeys and options
 :let g:notes_directories = ['~/ownCloud/notes']
+map <leader>k :SearchNotes<CR>
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsListSnippets="<c-l>"
@@ -226,7 +227,7 @@ let g:LatexBox_ignore_warnings
 "Compilation
 let g:LatexBox_latexmk_options
             \ = "-pdflatex='pdflatex -synctex=1 \%O \%S'"
-let g:LatexBox_viewer = 'okular'
+let g:LatexBox_viewer = 'zathura'
 augroup latex_macros " {
     autocmd!
     " compile
@@ -235,14 +236,11 @@ augroup latex_macros " {
     autocmd FileType tex :nnoremap <leader>v :LatexView<CR>
     " open/close Table of Contents
     "autocmd FileType tex :nnoremap <leader>t :LatexTOCToggle<CR>
-    " Enable opening okular at the current cursor position from vim
-    function! SyncTexForward()
-        let s:syncfile = fnamemodify(fnameescape(LatexBox_GetOutputFile()), ":r").".pdf"
-        let execstr = "silent !okular --unique ".s:syncfile."\\#src:".line(".").expand("%\:p").' &'
-        exec execstr
+    function! Synctex()
+            " remove 'silent' for debugging
+            execute "silent !zathura --synctex-forward " . line('.') . ":" . col('.') . ":" . bufname('%') . " " . g:syncpdf
     endfunction
-    autocmd FileType tex :nnoremap <Leader>f :call SyncTexForward()<CR>:sleep 200m<CR>:redraw!<CR>
-
+    autocmd FileType tex :nnoremap <leader>f :call Synctex()<cr>
 augroup END " }
 
 " Convenient command to see the difference between the current buffer and the

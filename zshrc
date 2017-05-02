@@ -77,7 +77,7 @@ ns() {
     grep -Ri "$*" ~/ownCloud/notes
     }
 # note title
-nst() {
+nls() {
     ls -c ~/ownCloud/notes | egrep -i "$*"
     }
 
