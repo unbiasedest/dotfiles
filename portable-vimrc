@@ -1,0 +1,132 @@
+" When started as "evim", evim.vim will already have done these settings.
+if v:progname =~? "evim"
+  finish
+endif
+
+" Use Vim settings, rather than Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+filetype off
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" indentation
+filetype plugin indent on
+set ts=4 sts=4 sw=4 expandtab
+
+if has("vms")
+  set nobackup		" do not keep a backup file, use versions instead
+else
+  set backup		" keep a backup file
+endif
+
+set history=50		" keep 50 lines of command line history
+set ruler		" show the cursor position all the time
+set showcmd		" display incomplete commands
+set incsearch		" do incremental searching
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+"Leader key
+:let mapleader = ' '
+
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
+
+"Make it possible to undo CTRL-W
+inoremap <C-w> <C-g>u<C-w>
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+  set mouse=a
+endif
+
+"default window size
+set lines=35 columns=150
+" Defining split window view behavior enabled by :vs and :sv
+set splitbelow
+set splitright
+
+" Inserting blank lines while staying in normal mode
+nnoremap <leader>o o<Esc>k
+nnoremap <leader>O O<Esc>j
+
+" Toggling listing of tabs/spaces
+nnoremap <leader>l :set list!<CR>
+set listchars=tab:▸\ ,eol:¬
+" fast line copying to system clipboard
+nnoremap <leader>y "*yy
+" fast pasting from system clipboard
+nnoremap <leader>p "*p
+" show all marks, e. g. for use in tex files
+nnoremap <leader>m :marks<CR>
+" open quickfix window
+nnoremap <leader>" :cope<CR>
+" close quickfix window
+nnoremap <leader>' :ccl<CR>
+" reload vimrc
+nnoremap <leader>so :source ~/.vimrc<CR>
+
+
+
+" Method collapsing
+set foldmethod=indent
+set foldlevel=99
+nnoremap <leader> za
+
+"Fast buffer switching
+map <leader>n :bn<CR>
+map <leader>N :bp<CR>
+
+" Toggling absolute/relative line numbers
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+    set relativenumber!
+  else
+    set relativenumber
+    set number!
+  endif
+endfunc
+
+nnoremap <leader>r :call NumberToggle()<cr>
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+endif
+
+" Show absolute line numbers on startup
+set number
+
+"allow working with hidden buffers
+set hidden
+
+"UTF8 encoding
+set encoding=utf-8
+
+"spellchecking
+nnoremap <leader>sd :setlocal spell! spelllang=de_de<CR>
+nnoremap <leader>se :setlocal spell! spelllang=en_us<CR>
+
+" show the matching part of the pair for [] {} and ()
+set showmatch
+
+" fix indent
+autocmd FileType python :nnoremap <leader>i Jr
+" insert spaces after comma
+autocmd FileType python :nnoremap <leader>k :%s/,\(\S\)/, \1/g<CR>
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
+"script for copying results from clipboard quickly
+nnoremap <Leader>g "*pkdd :w<CR> :bw<CR>
