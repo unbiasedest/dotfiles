@@ -30,7 +30,6 @@ Plugin 'jnurmine/Zenburn'
 Plugin 'kien/ctrlp.vim'
 "Git Integration
 Plugin 'tpope/vim-fugitive'
-
 "Ultisnips
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -49,7 +48,8 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
 "Orgmode
 Plugin 'jceb/vim-orgmode'
-
+"Speeddating for orgmode files
+Plugin 'tpope/vim-speeddating'
 "Latex-Box
 Plugin 'LaTeX-Box-Team/LaTeX-Box' 
 "Folding for Latex
@@ -121,8 +121,13 @@ nnoremap <leader>y "*yy
 nnoremap <leader>p "*p
 " show all marks, e. g. for use in tex files
 nnoremap <leader>m :marks<CR>
+" open quickfix window
+nnoremap <leader>" :cope<CR>
+" close quickfix window
+nnoremap <leader>' :ccl<CR>
 " reload vimrc
 nnoremap <leader>so :source ~/.vimrc<CR>
+
 
 
 " Method collapsing

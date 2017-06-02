@@ -25,6 +25,7 @@ alias ipnb='cd $HOME/ownCloud/python/notebooks/ && jupyter notebook'
 
 #Notes
 alias nd='cd $HOME/ownCloud/notes'
+alias orgd='cd $HOME/ownCloud/orgzly'
 
 #Scripting
 alias cdscripts='cd $HOME/ownCloud/scripts'
