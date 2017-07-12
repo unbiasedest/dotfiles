@@ -14,6 +14,7 @@ alias hg='history 1| grep'
 #Cool command line tools
 alias r='ranger'
 alias m='w3mman'
+alias z='zathura'
 
 #Home network
 alias nortonssh='ssh -Y pi@192.168.0.101'

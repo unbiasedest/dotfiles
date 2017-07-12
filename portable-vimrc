@@ -42,19 +42,16 @@ if has('mouse')
   set mouse=a
 endif
 
-"default window size
-set lines=35 columns=150
 " Defining split window view behavior enabled by :vs and :sv
 set splitbelow
 set splitright
 
+" Display statusbar at all times
+set laststatus=2
 " Inserting blank lines while staying in normal mode
 nnoremap <leader>o o<Esc>k
 nnoremap <leader>O O<Esc>j
 
-" Toggling listing of tabs/spaces
-nnoremap <leader>l :set list!<CR>
-set listchars=tab:▸\ ,eol:¬
 " fast line copying to system clipboard
 nnoremap <leader>y "*yy
 " fast pasting from system clipboard
@@ -130,3 +127,24 @@ endif
 
 "script for copying results from clipboard quickly
 nnoremap <Leader>g "*pkdd :w<CR> :bw<CR>
+
+"background color change
+set t_Co=256
+set background=light
+highlight Normal ctermbg=NONE
+highlight nonText ctermbg=NONE
+:function! ReverseBackground()
+: let Mysyn=&syntax
+: if &bg=="light"
+: se bg=dark
+: highlight Normal guibg=black guifg=white
+: else
+: se bg=light
+: highlight Normal guibg=white guifg=black
+: endif
+: syn on
+: exe "set syntax=" . Mysyn
+": echo "now syntax is "&syntax
+:endfunction
+:command! Invbg call ReverseBackground()
+:noremap <F11> :Invbg<CR>
