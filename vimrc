@@ -38,7 +38,8 @@ Plugin 'ervandew/supertab'
 
 "surroundings
 Plugin 'tpope/vim-surround'
-
+"quick comment/uncomment
+Plugin 'tpope/vim-commentary'
 "repeat surroundings
 Plugin 'tpope/vim-repeat'
 "autoclose brackets
@@ -221,10 +222,6 @@ let python_highlight_all = 1
 autocmd FileType python :nnoremap <leader>i Jr
 " insert spaces after comma
 autocmd FileType python :nnoremap <leader>k :%s/,\(\S\)/, \1/g<CR>
-" comment/uncomment in visual mode
-" changes only take effect AFTER reopening vim!
-autocmd FileType python :vnoremap <silent> # :s/^/# /<cr>:noh<cr>
-autocmd FileType python :vnoremap <silent> -# :s/^# //<cr>:noh<cr>
 " change default Tex filetype
 let g:tex_flavor = "latex"
 " LaTeX macros for compiling and viewing
