@@ -217,21 +217,26 @@ set showmatch
 
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
-" change default Tex filetype
-let g:tex_flavor = "latex"
 " fix indent
 autocmd FileType python :nnoremap <leader>i Jr
 " insert spaces after comma
 autocmd FileType python :nnoremap <leader>k :%s/,\(\S\)/, \1/g<CR>
-
+" comment/uncomment in visual mode
+" changes only take effect AFTER reopening vim!
+autocmd FileType python :vnoremap <silent> # :s/^/# /<cr>:noh<cr>
+autocmd FileType python :vnoremap <silent> -# :s/^# //<cr>:noh<cr>
+" change default Tex filetype
+let g:tex_flavor = "latex"
 " LaTeX macros for compiling and viewing
 " ignore certain warnings
 let g:LatexBox_quickfix = 2
 let g:LatexBox_ignore_warnings
             \ = ['Fancyhdr', 'Underfull', 'Overfull', 'specifier changed to']
-"Compilation
+"Compilation options
 let g:LatexBox_latexmk_options
             \ = "-pdflatex='pdflatex -synctex=1 \%O \%S'"
+"make compilation asyncronous
+let g:LatexBox_latexmk_async = 1
 let g:LatexBox_viewer = 'zathura'
 augroup latex_macros " {
     autocmd!
