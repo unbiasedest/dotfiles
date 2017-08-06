@@ -85,6 +85,11 @@ set incsearch		" do incremental searching
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
+" save swapfiles in their own directory
+set swapfile
+set dir=~/vimswap//
+
+
 "Leader key
 :let mapleader = ' '
 

@@ -3,7 +3,9 @@
 *~
 *.swp
 *.swo
+Session.vim
 # tex compilation files 
+*.sta
 *.lof
 *.lot
 *.out
@@ -13,5 +15,11 @@
 *.fdb_latexmk
 *.log
 *.synctex.gz
+*.bbl
+*.bcf
+*.blg
+*.run.xml
 # compiled latex files
 *.pdf
+#CTAGS
+tags
