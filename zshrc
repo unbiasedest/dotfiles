@@ -5,7 +5,7 @@ export PATH=$HOME/anaconda3/bin:$PATH
 export PATH=$PATH:$HOME/ownCloud/scripts
 export PYTHONPATH=$PYTHONPATH:$HOME/ownCloud/university/studienarbeit/scripts
 export QEMU_AUDIO_DRV=alsa
-export KEYTIMEOUT=20
+export KEYTIMEOUT=1
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completions 1
@@ -30,20 +30,56 @@ setopt inc_append_history autocd extendedglob nomatch
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
+#ls on cd
+chpwd() ls
+#Keyboard shortcuts
+# up
+	function up_widget() {
+		BUFFER="cd .."
+		zle accept-line
+	}
+	zle -N up_widget
+	bindkey "^k" up_widget
+# git
+	function git_prepare() {
+		if [ -n "$BUFFER" ];
+			then
+				BUFFER="git add -A; git commit -m \"$BUFFER\" && git push"
+		fi
+
+		if [ -z "$BUFFER" ];
+			then
+				BUFFER="git add -A; git commit -v && git push"
+		fi
+				
+		zle accept-line
+	}
+	zle -N git_prepare
+	bindkey "^g" git_prepare
+# home
+	function goto_home() { 
+		BUFFER="cd ~/"$BUFFER
+		zle end-of-line
+		zle accept-line
+	}
+	zle -N goto_home
+	bindkey "^h" goto_home
+# Edit and rerun
+	function edit_and_run() {
+		BUFFER="fc"
+		zle accept-line
+	}
+	zle -N edit_and_run
+	bindkey "^v" edit_and_run
+# LS
+	function ctrl_l() {
+		BUFFER="ls"
+		zle accept-line
+	}
+	zle -N ctrl_l
+	bindkey "^l" ctrl_l
+
 #prompt
-
-# edit command line
-autoload -Uz edit-command-line
-vim_ins_mode="%{$fg[cyan]%}[i]%{$reset_color%}"
-vim_cmd_mode="%{$fg[green]%}[n]%{$reset_color%}"
-
-function zle-keymap-select() {
-    zle reset-prompt
-    zle -R
-vim_mode="${${KEYMAP/vicmd/${vim_cmd_mode}}/(main|viins)/${vim_ins_mode}}"
-    }
-zle -N zle-keymap-select
-
 
 # Fix a bug when you C-c in CMD mode and you'd be prompted with CMD mode indicator, while in fact you would be in INS mode
 # Fixed by catching SIGINT (C-c), set vim_mode to INS and then repropagate the SIGINT, so if anything else depends on it, we will not break it
