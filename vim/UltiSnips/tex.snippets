@@ -67,3 +67,19 @@ endsnippet
 snippet cn "circuittikz node shorthand"
 node[${1:type}](${2:name}){${3:text}}
 endsnippet
+snippet pysfig "two subfigures generated with python"
+\begin{figure}[p]
+	\begin{subfigure}[t]{\textwidth}
+	\input{fig/$1.pgf}
+	\caption{$2}
+	\label{fig:$3}
+	\end{subfigure}
+	\begin{subfigure}[t]{\textwidth}
+	\input{fig/$4.pgf}
+	\caption{$5}
+	\label{fig:$6}
+	\end{subfigure}
+	\caption{$7}
+	\label{fig:$8}
+\end{figure}
+endsnippet
