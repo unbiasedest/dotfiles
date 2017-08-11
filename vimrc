@@ -22,8 +22,6 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 "syntax checking
 Plugin 'scrooloose/syntastic'
-"PEP8
-Plugin 'nvie/vim-flake8'
 "Color scheme
 Plugin 'jnurmine/Zenburn'
 "Search for anythin from vim
@@ -93,10 +91,6 @@ set backupdir=~/vimbackup//
 
 "Leader key
 :let mapleader = ' '
-
-
-"call Flake8 if writing a python file
-autocmd BufWritePost *.py call Flake8()
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -203,9 +197,11 @@ let g:syntastic_tex_checkers = ['']
 set wildignore +=*run.xml,*.aux,**.bcf,*.blg,*.fdb_latexmk,*.fls,*.sta,*.synctex.gz,*.pdf
 "python syntax
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_checker_args = "--ignore=E402"
+let g:syntastic_python_flake8_args = "--ignore=E402"
 let g:pep8_ignore="E402"
 
+"Bash syntax check
+let g:syntastic_sh_checkers = ['shellcheck']
 " Show absolute line numbers on startup
 set number
 
