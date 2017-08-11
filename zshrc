@@ -6,6 +6,7 @@ export PATH=$PATH:$HOME/ownCloud/scripts
 export PYTHONPATH=$PYTHONPATH:$HOME/ownCloud/university/studienarbeit/scripts
 export QEMU_AUDIO_DRV=alsa
 export KEYTIMEOUT=1
+
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completions 1
@@ -22,18 +23,19 @@ zstyle :compinstall filename '/home/martin/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+#
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
 setopt inc_append_history autocd extendedglob nomatch 
-bindkey -v
 # End of lines configured by zsh-newuser-install
 
 #ls on cd
 chpwd() ls --color=auto
-#Keyboard shortcuts
-# up
+
+# KEYBOARD SHORTCUTS
+# dir_up
 	function dir_up_widget() {
 		BUFFER="cd .."
 		zle accept-line
@@ -86,8 +88,10 @@ chpwd() ls --color=auto
 	zle -N list_dir
 	bindkey "^l" list_dir
 
-#prompt
+bindkey '^r' history-incremental-search-backward
 
+# VIM line edit
+bindkey -v
 # Fix a bug when you C-c in CMD mode and you'd be prompted with CMD mode indicator, while in fact you would be in INS mode
 # Fixed by catching SIGINT (C-c), set vim_mode to INS and then repropagate the SIGINT, so if anything else depends on it, we will not break it
  function TRAPINT() {
@@ -95,7 +99,18 @@ chpwd() ls --color=auto
    zle && zle reset-prompt
      return $(( 128 + $1 ))
      }
+# Normal mode indicator on prompt
+precmd() { RPROMPT="" }
+function zle-line-init zle-keymap-select {
+   VIM_PROMPT="%{$fg_bold[green]%} [% NORMAL]%  %{$reset_color%}"
+   RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+   zle reset-prompt
+}
 
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# PROMPT
 # don't display PROMPT for previously accepted lines; only display it next to current line
 autoload -U colors && colors
 PROMPT="%{$fg_bold[blue]%}%n%{$reset_color%}%{$fg[blue]%}(%m%)%{$reset_color%}> "
@@ -110,6 +125,8 @@ if which tmux >/dev/null 2>&1; then
     test -z ${TMUX} && tmux
 
 fi
+
+# NOTE FUNCTIONS
  # Opens a note
 n() {
     vim -c ":Note $*" 
@@ -124,8 +141,7 @@ nls() {
     ls -c ~/ownCloud/notes | egrep -i "$*"
     }
 
-
-# syntax highlighting
+# SYNTAX HIGHLIGHTING
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Enable highlighters
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
