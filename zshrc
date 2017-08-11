@@ -31,15 +31,22 @@ bindkey -v
 # End of lines configured by zsh-newuser-install
 
 #ls on cd
-chpwd() ls
+chpwd() ls --color=auto
 #Keyboard shortcuts
 # up
-	function up_widget() {
+	function dir_up_widget() {
 		BUFFER="cd .."
 		zle accept-line
 	}
-	zle -N up_widget
-	bindkey "^k" up_widget
+	zle -N dir_up_widget
+	bindkey "^k" dir_up_widget
+# prev_dir
+	function dir_prev_widget() {
+		BUFFER="cd -"
+		zle accept-line
+	}
+	zle -N dir_prev_widget
+	bindkey "^b" dir_prev_widget
 # git
 	function git_prepare() {
 		if [ -n "$BUFFER" ];
@@ -72,12 +79,12 @@ chpwd() ls
 	zle -N edit_and_run
 	bindkey "^v" edit_and_run
 # LS
-	function ctrl_l() {
+	function list_dir() {
 		BUFFER="ls"
 		zle accept-line
 	}
-	zle -N ctrl_l
-	bindkey "^l" ctrl_l
+	zle -N list_dir
+	bindkey "^l" list_dir
 
 #prompt
 

@@ -7,6 +7,10 @@ alias llg='ll | grep'
 alias aedit='vi ~/dotfiles/bash_aliases'
 alias asource='source ~/dotfiles/bash_aliases'
 
+#Show hotkeys defined in zsh-rc
+alias zhk='cat ~/.zshrc | grep bindkey'
+alias vihk='cat ~/.vimrc | grep leader'
+
 #History
 alias h='history 1'
 alias hg='history 1| grep'
