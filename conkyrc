@@ -1,0 +1,2 @@
+${voffset -1}${hr .25}
+${execi 120 fortune -s | fold -w20 | cowsay -f $(ls /usr/share/cowsay/cows/ | shuf -n1)}
