@@ -90,6 +90,8 @@ chpwd() ls --color=auto
 
 # incremental history search
 bindkey '^r' history-incremental-search-backward
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
 # accept autosuggestion with CTRL-F
 bindkey '^f' autosuggest-accept
 
