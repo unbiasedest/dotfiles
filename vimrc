@@ -119,7 +119,9 @@ set listchars=tab:▸\ ,eol:¬
 " fast line copying to system clipboard
 nnoremap <leader>y "*yy
 " fast pasting from system clipboard
-nnoremap <leader>p "*p
+nnoremap <leader>p "+p
+" fast pasting from system clipboard on newline
+nnoremap <leader>P o<Esc>"+p
 " show all marks, e. g. for use in tex files
 nnoremap <leader>m :marks<CR>
 " open quickfix window

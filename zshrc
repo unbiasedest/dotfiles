@@ -88,7 +88,10 @@ chpwd() ls --color=auto
 	zle -N list_dir
 	bindkey "^l" list_dir
 
+# incremental history search
 bindkey '^r' history-incremental-search-backward
+# accept autosuggestion with CTRL-F
+bindkey '^f' autosuggest-accept
 
 # VIM line edit
 bindkey -v
@@ -140,6 +143,9 @@ ns() {
 nls() {
     ls -c ~/ownCloud/notes | egrep -i "$*"
     }
+
+# AUTOSUGGESTIONS
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # SYNTAX HIGHLIGHTING
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
