@@ -23,7 +23,8 @@ Plugin 'vim-scripts/indentpython.vim'
 "syntax checking
 Plugin 'scrooloose/syntastic'
 "Color scheme
-Plugin 'jnurmine/Zenburn'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'vim-airline/vim-airline-themes'
 "Search for anythin from vim
 Plugin 'kien/ctrlp.vim'
 "Git Integration
@@ -130,6 +131,10 @@ nnoremap <leader>" :cope<CR>
 nnoremap <leader>' :ccl<CR>
 " reload vimrc
 nnoremap <leader>so :source ~/.vimrc<CR>
+" save  session
+nnoremap <leader>sm :mksession! Session.vim<CR>
+" restore previous session
+nnoremap <leader>ss :source Session.vim<CR>
 
 
 
@@ -260,15 +265,15 @@ augroup END " }
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
-endi
+endif
 
 "script for copying results from clipboard quickly
 nnoremap <Leader>g "*pkdd :w<CR> :bw<CR>
 
 "colorscheme
-set t_Co=256
-set background=dark
-colorscheme zenburn
+set background=light
+colorscheme solarized
+let g:airline_theme='solarized'
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
 
