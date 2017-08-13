@@ -118,7 +118,7 @@ nnoremap <leader>O O<Esc>j
 nnoremap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 " fast line copying to system clipboard
-nnoremap <leader>y "*yy
+nnoremap <leader>y "+yy
 " fast pasting from system clipboard
 nnoremap <leader>p "+p
 " fast pasting from system clipboard on newline
@@ -276,6 +276,11 @@ colorscheme solarized
 let g:airline_theme='solarized'
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
+highlight notesListNumber ctermfg=2
+highlight notesListBullet ctermfg=6
+highlight notesSingleQuoted ctermfg=6
+
+
 
 "physical scrolling config
 let g:comfortable_motion_friction = 200.0
@@ -288,4 +293,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
 set laststatus=2
 set noshowmode
-let g:tmuxline_preset = 'tmux'
+let g:tmuxline_preset = {
+      \'a'    : '[#S]',
+      \'win'  : ['#I', '#W'],
+      \'cwin'  : ['#I', '#W'],
+      \'z'    : ['%a', '%d.%m.%y'],
+      \'options' : {'status-justify' : 'left'}}

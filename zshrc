@@ -94,6 +94,8 @@ bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 # accept autosuggestion with CTRL-F
 bindkey '^f' autosuggest-accept
+# reverse tab for tab-completion
+bindkey '^[[Z' reverse-menu-complete
 
 # VIM line edit
 bindkey -v
