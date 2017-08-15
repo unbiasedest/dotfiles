@@ -56,8 +56,6 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'matze/vim-tex-fold'
 "Nerdtree
 Plugin 'scrooloose/nerdtree'
-"physical scrolling
-Plugin 'yuttie/comfortable-motion.vim'
 "Airline
 Plugin 'vim-airline/vim-airline'
 Plugin 'edkolev/tmuxline.vim'
@@ -280,12 +278,6 @@ highlight notesListNumber ctermfg=2
 highlight notesListBullet ctermfg=6
 highlight notesSingleQuoted ctermfg=6
 
-
-
-"physical scrolling config
-let g:comfortable_motion_friction = 200.0
-let g:comfortable_motion_air_drag = 0.0
-
 " Powerline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -295,7 +287,7 @@ set laststatus=2
 set noshowmode
 let g:tmuxline_preset = {
       \'a'    : '[#S]',
-      \'win'  : ['#I', '#W'],
+      \'win'  : ['#I', '#F', '#W'],
       \'cwin'  : ['#I', '#W'],
       \'z'    : ['%a', '%d.%m.%y'],
       \'options' : {'status-justify' : 'left'}}
