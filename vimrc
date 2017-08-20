@@ -116,7 +116,7 @@ nnoremap <leader>O O<Esc>j
 nnoremap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 " fast line copying to system clipboard
-nnoremap <leader>y "+yy
+nnoremap <leader>y "*yy
 " fast pasting from system clipboard
 nnoremap <leader>p "+p
 " fast pasting from system clipboard on newline
@@ -202,8 +202,8 @@ let g:syntastic_tex_checkers = ['']
 set wildignore +=*run.xml,*.aux,**.bcf,*.blg,*.fdb_latexmk,*.fls,*.sta,*.synctex.gz,*.pdf
 "python syntax
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = "--ignore=E402"
-let g:pep8_ignore="E402"
+let g:syntastic_python_flake8_args = "--ignore=E402,E226"
+let g:pep8_ignore="E402,E226"
 
 "Bash syntax check
 let g:syntastic_sh_checkers = ['shellcheck']
@@ -268,7 +268,7 @@ endif
 "script for copying results from clipboard quickly
 nnoremap <Leader>g "*pkdd :w<CR> :bw<CR>
 
-"colorscheme
+"colorscheme (solarized as default)
 set background=light
 colorscheme solarized
 let g:airline_theme='solarized'
@@ -277,6 +277,27 @@ highlight nonText ctermbg=NONE
 highlight notesListNumber ctermfg=2
 highlight notesListBullet ctermfg=6
 highlight notesSingleQuoted ctermfg=6
+
+" Toggling between light and dark
+function! ColorToggle()
+  if g:airline_theme == "molokai"
+    set background=light
+    colorscheme solarized
+    let g:airline_theme='solarized'
+    :AirlineRefresh
+    highlight Normal ctermbg=NONE
+    highlight nonText ctermbg=NONE
+  else
+    set background=dark
+    colorscheme molokai
+    let g:airline_theme='molokai'
+    :AirlineRefresh
+    highlight Normal ctermbg=NONE
+    highlight nonText ctermbg=NONE
+  endif
+endfunc
+nnoremap <leader>C :call ColorToggle()<cr>
+
 
 " Powerline
 let g:airline_powerline_fonts = 1
