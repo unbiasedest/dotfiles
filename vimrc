@@ -131,7 +131,8 @@ nnoremap <leader>O O<Esc>j
 nnoremap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 " fast line copying to system clipboard
-nnoremap <leader>y "*yy
+nnoremap <leader>y "+yy
+vmap <leader>y "+y
 " fast pasting from system clipboard
 nnoremap <leader>p "+p
 " fast pasting from system clipboard on newline
