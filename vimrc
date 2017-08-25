@@ -161,7 +161,9 @@ nnoremap <leader>sd :setlocal spell! spelllang=de_de<CR>
 nnoremap <leader>se :setlocal spell! spelllang=en_us<CR>
 "relative number toggling
 nnoremap <leader>r :call NumberToggle()<cr>
-" Colorscheme Toggling
+"toggle cursors
+nnoremap <leader>w :call CursorToggle()<cr> 
+"Colorscheme Toggling
 nnoremap <leader>C :call ColorToggle()<cr>
 
 " Method collapsing
@@ -276,6 +278,16 @@ function! NumberToggle()
   else
     set relativenumber
     set number!
+  endif
+endfunc
+" Toggling cursor columns/lines
+function! CursorToggle()
+  if(&cursorcolumn == 1 && &cursorline == 1)
+    set cursorcolumn!
+    set cursorline!
+  else
+    set cursorcolumn
+    set cursorline
   endif
 endfunc
 " Convenient command to see the difference between the current buffer and the
