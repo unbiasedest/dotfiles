@@ -238,7 +238,19 @@ augroup latex_macros " {
             " remove 'silent' for debugging
             execute "silent !zathura --synctex-forward " . line('.') . ":" . col('.') . ":" . bufname('%') . " " . g:syncpdf
     endfunction
+    " soft wrapping and comfortable navigation
     autocmd FileType tex :nnoremap <leader>f :call Synctex()<cr>
+    " autocmd FileType tex :set wrap linebreak nolist
+    autocmd FileType tex :vnoremap j gj
+    autocmd FileType tex :vnoremap k gk
+    autocmd FileType tex :vnoremap $ g$
+    autocmd FileType tex :vnoremap ^ g^
+    autocmd FileType tex :vnoremap 0 g^
+    autocmd FileType tex :nnoremap j gj
+    autocmd FileType tex :nnoremap k gk
+    autocmd FileType tex :nnoremap $ g$
+    autocmd FileType tex :nnoremap 0 g^
+    autocmd FileType tex :nnoremap ^ g^
 augroup END " }
 
 "COLORSCHEME (solarized as default)
