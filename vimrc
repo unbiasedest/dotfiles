@@ -19,12 +19,14 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tmhedberg/SimpylFold'
 "Python auto-indent
 Plugin 'vim-scripts/indentpython.vim'
+"Python autocomplete
+Plugin 'davidhalter/jedi-vim'
 "syntax checking
 Plugin 'scrooloose/syntastic'
 "Color scheme
 Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-airline/vim-airline-themes'
-"Search for anythin from vim
+"Search for anything from vim
 Plugin 'kien/ctrlp.vim'
 "Git Integration
 Plugin 'tpope/vim-fugitive'
@@ -161,6 +163,8 @@ nnoremap <leader>sd :setlocal spell! spelllang=de_de<CR>
 nnoremap <leader>se :setlocal spell! spelllang=en_us<CR>
 "relative number toggling
 nnoremap <leader>r :call NumberToggle()<cr>
+"disable line numbers
+nnoremap <leader>R :call NumberDisable()<cr>
 "toggle cursors
 nnoremap <leader>w :call CursorToggle()<cr> 
 "Colorscheme Toggling
@@ -208,10 +212,12 @@ let g:syntastic_sh_checkers = ['shellcheck']
 "PYTHON
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
+"use built-in code completion
 " fix indent
 autocmd FileType python :nnoremap <leader>i Jr
 " insert spaces after comma
 autocmd FileType python :nnoremap <leader>k :%s/,\(\S\)/, \1/g<CR>
+
 
 "LATEX
 " change default Tex filetype
@@ -240,7 +246,7 @@ augroup latex_macros " {
     endfunction
     " soft wrapping and comfortable navigation
     autocmd FileType tex :nnoremap <leader>f :call Synctex()<cr>
-    " autocmd FileType tex :set wrap linebreak nolist
+    autocmd FileType tex :set wrap linebreak nolist nonumber 
     autocmd FileType tex :vnoremap j gj
     autocmd FileType tex :vnoremap k gk
     autocmd FileType tex :vnoremap $ g$
@@ -292,6 +298,14 @@ function! NumberToggle()
     set number!
   endif
 endfunc
+" Disable absolute/relative line numbers
+function! NumberDisable()
+  if(&relativenumber == 1)
+    set relativenumber!
+  else
+    set number!
+  endif
+endfunc
 " Toggling cursor columns/lines
 function! CursorToggle()
   if(&cursorcolumn == 1 && &cursorline == 1)
@@ -312,8 +326,7 @@ endif
 
 " POWERLINE
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
 set laststatus=2
 set noshowmode
