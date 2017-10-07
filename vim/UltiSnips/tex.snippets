@@ -3,21 +3,7 @@ snippet qu "Creates a question and answer item"
 ${2:answer}
 %
 endsnippet
-snippet tabx "Creates a tabx table with two columns" 
-\begin{tabularx}{\textwidth}{${1:|X|X|}}
-	\hline $2 & $3 \\\
-	\hline 
-\end{tabularx}
-endsnippet
-snippet csvtab "read in csv table"
-\csvreader[tabular=${1:c c c},
-			table head= ${1: a b c },
-			] %optionen/header
-			{tab/$3}%File
-			{}%Spaltenzuordnung
-			{}%Tabellenzeile
 
-endsnippet
 snippet ceq "Conditional equation" b
 \begin{equation}
 ${1:eq} = 
@@ -27,63 +13,83 @@ ${1:eq} =
 \end{cases}
 \end{equation}
 endsnippet
+
 snippet si "Insert SI-Unit from siunitx package"
 \SI{${1:value}}{\\${2:unit}}
 endsnippet
 
-
 snippet im "inline math"
 \( $1 \)
 endsnippet
+
 snippet cfig "circuits drawn with tikz"
+%
 \begin{figure}[htpb]
 	\centering
-	\includestandalone[width=$1\textwidth]{fig/$2}
-	\caption{$3}
-	\label{fig:$4}
+	\includestandalone[width=\textwidth]{fig/$1}
+	\caption[$2]{$2}
+	\label{fig:$1}
 \end{figure}
+%
 endsnippet
 
 snippet pyfig "figure generated with python"
+%
 \begin{figure}[htbp]
 	\centering
-	\input{fig/$1.pgf}
-	\caption{$2}
-	\label{fig:$3}
+	\input{fig/$1}
+	\caption[$2]
+	{$2}
+	\label{fig:$1}
 \end{figure}
+%
 endsnippet
 
 snippet lrb "left/right brackets"
 \left( $1 \right)
 endsnippet
 
-
-snippet fg "frequency shorthand"
+snippet fg "frequency"
 \( f =  \SI{$1}{\giga \hertz} \)
 endsnippet
 
-snippet ar "autoref shorthand"
+snippet ar "autoref"
 \autoref{$1}
 endsnippet
-snippet er "eqref shorthand"
+
+snippet er "eqref"
 \eqref{$1}
 endsnippet
-snippet cn "circuittikz node shorthand"
-node[${1:type}](${2:name}){${3:text}}
+
+snippet cn "circuittikz node"
+ node[${1:type}](${2:name}){${3:text}} 
 endsnippet
+
+snippet cs "circuittikz connection"
+ to[short] 
+endsnippet
+
+snippet cs "circuittikz voltage"
+ to[open, v=${1:}]
+endsnippet
+
 snippet pysfig "two subfigures generated with python"
+%
 \begin{figure}[p]
 	\begin{subfigure}[t]{\textwidth}
-	\input{fig/$1.pgf}
-	\caption{$2}
+	\input{fig/$1}
+	\caption {$2}
+	\label{fig:$1}
+	\end{subfigure}
+	%
+	\begin{subfigure}[b]{\textwidth}
+	\input{fig/$3}
+	\caption{$4}
 	\label{fig:$3}
 	\end{subfigure}
-	\begin{subfigure}[t]{\textwidth}
-	\input{fig/$4.pgf}
-	\caption{$5}
+	%
+	\caption[$5]
+	{$5}
 	\label{fig:$6}
-	\end{subfigure}
-	\caption{$7}
-	\label{fig:$8}
 \end{figure}
 endsnippet
