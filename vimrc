@@ -32,7 +32,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 "Ultisnips
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
 "for using YCM and ultisnips together
 Plugin 'ervandew/supertab'
 "surroundings
@@ -191,9 +190,10 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 map <leader>k :SearchNotes<CR>
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsListSnippets="<c-l>"
+let g:UltiSnipsListSnippets="<c-L>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+inoremap <c-e> <esc>:UltiSnipsEdit<CR> 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 

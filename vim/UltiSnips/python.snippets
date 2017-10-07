@@ -1,0 +1,26 @@
+snippet lab "Creates a string for labeling the axis with latex/siunitx package"
+r'${1:macro}/\SI{}{${2:unit}}'
+endsnippet
+
+snippet def "skeleton function definition"
+
+
+def ${1:funcname}(${2:args}, ${3:kwargs}):
+	"""${4:docstring}"""
+	${6}
+	return ${5:val}
+
+
+endsnippet
+
+snippet sba "shebang using anaconda"
+#!/home/martin/anaconda3/bin/python
+endsnippet
+
+snippet sbe "shebang using env"
+#!/usr/bin/env python3
+endsnippet
+
+snippet floatp "print a formatted float variable"
+print('${1:text}: {0:${2:3.3}f}'.format(float(${3:var})))
+endsnippet
