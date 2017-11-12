@@ -3,7 +3,7 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 export PATH=$HOME/anaconda3/bin:$PATH
 export PATH=$PATH:$HOME/ownCloud/scripts
-export PYTHONPATH=$PYTHONPATH:$HOME/ownCloud/university/studienarbeit/scripts
+export PYTHONPATH=$PYTHONPATH:$HOME/ownCloud/university/studienarbeit/texplots:$HOME/oo-design/src
 export QEMU_AUDIO_DRV=alsa
 export KEYTIMEOUT=1
 

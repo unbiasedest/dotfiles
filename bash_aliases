@@ -1,6 +1,9 @@
 #Basic Bash
 alias ls='ls --color=auto'
+alias pyls='ls *.py --color=auto'
+alias pdfls='ls *.pdf --color=auto'
 alias grep='grep --color=auto'
+alias pygrep='grep --color=auto -iR --include \*.py fit'
 alias ll='ls -la'
 alias a='alias'
 alias llg='ll | grep' # grep ll output
@@ -11,9 +14,11 @@ alias ping='ping -c 5'      # Pings with 5 packets, not unlimited
 alias df='df -h'            # Disk free, in gigabytes, not bytes
 alias du='du -h -c'         # Calculate total disk usage for a folder
 
-#Show hotkeys defined in zsh-rc
-alias zhk='cat ~/.zshrc | grep bindkey'
-alias vihk='cat ~/.vimrc | grep leader'
+#Keyboard shortcuts
+alias zhk='cat ~/.zshrc | grep bindkey' # zsh 
+alias vihk='cat ~/.vimrc | grep leader' # vim-leaders
+alias src='esc.sh' # swap capslock and escape
+
 
 #History
 alias h='history 1'
@@ -45,7 +50,8 @@ alias tuvpn='nmcli con up 0d3a4940-900d-486a-8e30-0a25239eb32e'
 alias ask_tuvpn='nmcli --ask con up 0d3a4940-900d-486a-8e30-0a25239eb32e' 
 alias sgd='cd ~/Oracle\ Secure\ Global\ Desktop/clients/i3li/5.00.907 && ./ttatcc'
 alias stex='cd ~/studienarbeit && vim --servername tex studienarbeit.latex'
-alias cdsascripts='cd ~/ownCloud/university/studienarbeit/scripts'
+alias doku='cd ~/SA-Doku && vim --servername doku doku.latex'
+alias texplots='cd ~/ownCloud/university/studienarbeit/texplots'
 alias vicsv='vi files.txt && rfilename.sh files.txt && vi *.vcsv'
 alias viserver='vim --servername tex '
 # alias zotero='source ~/Zotero_linux-x86_64/zotero &'

@@ -24,3 +24,12 @@ endsnippet
 snippet floatp "print a formatted float variable"
 print('${1:text}: {0:${2:3.3}f}'.format(float(${3:var})))
 endsnippet
+
+snippet class "class stub"
+class $1:
+	"""${2:DOCSTRING}
+	"""
+	def __init__(self):
+
+	def __str__(self):
+endsnippet

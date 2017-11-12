@@ -4,6 +4,25 @@ ${2:answer}
 %
 endsnippet
 
+snippet bf "boldface"
+\textbf{$1}
+endsnippet
+
+snippet tt "blocksatz"
+\texttt{$1}
+endsnippet
+snippet fr "fraction" 
+ \frac{$1}{$2}
+endsnippet
+snippet eq "labeled equation" b
+%
+\begin{equation}
+	$1  
+	\label{eq:${2:label}}
+\end{equation}
+%
+endsnippet
+
 snippet ceq "Conditional equation" b
 \begin{equation}
 ${1:eq} = 
@@ -15,7 +34,7 @@ ${1:eq} =
 endsnippet
 
 snippet si "Insert SI-Unit from siunitx package"
-\SI{${1:value}}{\\${2:unit}}
+\SI{$1}{\\${2}}
 endsnippet
 
 snippet im "inline math"
@@ -58,7 +77,7 @@ snippet ar "autoref"
 endsnippet
 
 snippet er "eqref"
-\eqref{$1}
+\eqref{eq:$1}
 endsnippet
 
 snippet cn "circuittikz node"
@@ -69,7 +88,7 @@ snippet cs "circuittikz connection"
  to[short] 
 endsnippet
 
-snippet cs "circuittikz voltage"
+snippet cv "circuittikz voltage"
  to[open, v=${1:}]
 endsnippet
 
@@ -93,3 +112,39 @@ snippet pysfig "two subfigures generated with python"
 	\label{fig:$6}
 \end{figure}
 endsnippet
+
+snippet subtable "two tables arranged as a subfigure"
+%
+\begin{table}[bh]
+\begin{subfigure}[t]{${0:0.5} \textwidth}
+    \centering
+    \caption[]
+    {}
+    \label{tab:${1:}}
+    \begin{tabular}{l c}
+        & \\ \hline
+		& 
+    \end{tabular}
+\end{subfigure} \par\vspace{1cm}
+%
+\begin{subfigure}[t]{${0:0.5} \textwidth}
+    \centering
+    \caption[]
+    {}
+    \label{tab:${3:}}
+    \begin{tabular}{l c}
+        & \\ \hline
+		& 
+    \end{tabular}
+\end{subfigure}
+%
+\caption[]{${3:}}
+\end{table} \\
+%
+endsnippet
+
+snippet it "italicized text"
+\textit{$1}
+endsnippet
+
+

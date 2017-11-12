@@ -241,6 +241,9 @@ augroup latex_macros " {
     autocmd!
     " compile
     autocmd FileType tex :nnoremap <leader>c :w<CR>:Latexmk<CR>
+    " stop compilation
+    autocmd FileType tex :nnoremap <leader>C :LatexmkStop<CR>
+    " stop compilation
     " open okular
     autocmd FileType tex :nnoremap <leader>v :LatexView<CR>
     " open/close Table of Contents
