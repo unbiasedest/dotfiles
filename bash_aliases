@@ -43,7 +43,7 @@ alias nd='cd $HOME/ownCloud/notes'
 alias orgd='cd $HOME/ownCloud/orgzly'
 
 #Scripting
-alias cdscripts='cd $HOME/ownCloud/scripts'
+alias scripts='cd $HOME/ownCloud/scripts'
 
 #Studienarbeit
 alias tuvpn='nmcli con up 0d3a4940-900d-486a-8e30-0a25239eb32e' 

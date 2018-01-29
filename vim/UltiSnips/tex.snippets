@@ -8,12 +8,18 @@ snippet bf "boldface"
 \textbf{$1}
 endsnippet
 
+snippet sec "section label"
+\label{sec:$1}
+endsnippet
+
 snippet tt "blocksatz"
 \texttt{$1}
 endsnippet
+
 snippet fr "fraction" 
- \frac{$1}{$2}
+\frac{$1}{$2}
 endsnippet
+
 snippet eq "labeled equation" b
 %
 \begin{equation}
@@ -94,7 +100,7 @@ endsnippet
 
 snippet pysfig "two subfigures generated with python"
 %
-\begin{figure}[p]
+\begin{figure}[ht]
 	\begin{subfigure}[t]{\textwidth}
 	\input{fig/$1}
 	\caption {$2}
@@ -113,29 +119,50 @@ snippet pysfig "two subfigures generated with python"
 \end{figure}
 endsnippet
 
+
+snippet sfig "two subfigures side-by-side, textwidth for include graphics id width of subfigure "
+%
+\begin{figure}[ht]
+	\begin{subfigure}[t]{0.5 \textwidth}
+	\includegraphics[width =\textwidth]{fig/$1}
+	\caption {$2}
+	\label{fig:$1}
+	\end{subfigure}
+	%
+	\begin{subfigure}[t]{0.5 \textwidth}
+	\includegraphics[width =\textwidth]{fig/$3}
+	\caption{$4}
+	\label{fig:$3}
+	\end{subfigure}
+	%
+	\caption[$5]
+	{$5}
+	\label{fig:$6}
+\end{figure}
+endsnippet
 snippet subtable "two tables arranged as a subfigure"
 %
 \begin{table}[bh]
 \begin{subfigure}[t]{${0:0.5} \textwidth}
-    \centering
-    \caption[]
-    {}
-    \label{tab:${1:}}
-    \begin{tabular}{l c}
-        & \\ \hline
+	\centering
+	\caption[]
+	{}
+	\label{tab:${1:}}
+	\begin{tabular}{l c}
+		& \\ \hline
 		& 
-    \end{tabular}
+	\end{tabular}
 \end{subfigure} \par\vspace{1cm}
 %
 \begin{subfigure}[t]{${0:0.5} \textwidth}
-    \centering
-    \caption[]
-    {}
-    \label{tab:${3:}}
-    \begin{tabular}{l c}
-        & \\ \hline
+	\centering
+	\caption[]
+	{}
+	\label{tab:${3:}}
+	\begin{tabular}{l c}
+		& \\ \hline
 		& 
-    \end{tabular}
+	\end{tabular}
 \end{subfigure}
 %
 \caption[]{${3:}}
@@ -143,8 +170,82 @@ snippet subtable "two tables arranged as a subfigure"
 %
 endsnippet
 
+snippet fig "Figure using \includegraphics"
+%
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width = \textwidth]
+	{fig/$1}
+	\caption{$2}
+	\label{fig:$1}
+\end{figure}
+%
+endsnippet
+
 snippet it "italicized text"
 \textit{$1}
+endsnippet
+
+snippet pa "path"
+\path{$1}
+endsnippet
+
+snippet tab "tabular in table env"
+%
+\begin{table}[ht]
+	\centering
+	\caption[$1]
+	{$1}
+	\label{tab:$2}
+%
+	\begin{tabular}{l c}
+	\toprule
+		&  & \\\\
+		\midrule
+		& & \\\\
+	\bottomrule
+	\end{tabular}
+\end{table}
+%
+endsnippet
+
+snippet tabx "tabularx in table env (for text)"
+%
+\begin{table}[ht]
+	\centering
+	\caption[$1]
+	{$1}
+	\label{tab:$2}
+	%
+	\begin{tabularx}{\linewidth}{X X}
+	\toprule
+		&  & \\\\
+		\midrule
+		& & \\\\
+	\bottomrule
+	\end{tabularx}
+\end{table}
+%
+endsnippet
+
+snippet code "listings package code environment"
+%
+\begin {lstlisting}[float=ht, frame=single]
+$1
+\end{lstlisting}
+%
+endsnippet
+
+snippet icode "listings package inline code"
+\lstinline! $1!
+endsnippet
+
+snippet fcode "listings package code file"
+%
+\begin{center}
+\lstinputlisting[frame=single]{$1}
+\end{center}
+%
 endsnippet
 
 

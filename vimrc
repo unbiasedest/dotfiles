@@ -103,9 +103,6 @@ if has('mouse')
 endif
 "default window size
 set lines=35 columns=150
-" Defining split window view behavior enabled by :vs and :sv
-set splitbelow
-set splitright
 "ignore compilation files from latex in autocomplete and pdf files
 set wildignore +=*run.xml,*.aux,**.bcf,*.blg,*.fdb_latexmk,*.fls,*.sta,*.synctex.gz,*.pdf
 " Show absolute line numbers on startup
@@ -173,6 +170,12 @@ nnoremap <leader>R :call NumberDisable()<cr>
 nnoremap <leader>w :call CursorToggle()<cr> 
 "Colorscheme Toggling
 nnoremap <leader>C :call ColorToggle()<cr>
+"Highlighting Toggling
+nnoremap <leader>h :nohl<cr>
+"comfortable splits
+nnoremap <leader>- :vs 
+nnoremap <leader>_ :sv 
+
 
 " Method collapsing
 set foldmethod=indent
@@ -217,11 +220,11 @@ let g:syntastic_sh_checkers = ['shellcheck']
 "PYTHON
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
+"autopep 8
+au FileType python setlocal formatprg=autopep8\ -
 "use built-in code completion
-" fix indent
-autocmd FileType python :nnoremap <leader>i Jr
-" insert spaces after comma
-autocmd FileType python :nnoremap <leader>k :%s/,\(\S\)/, \1/g<CR>
+"format whole file with autopep8
+autocmd FileType python :nnoremap <leader>i gggqG
 
 
 "LATEX
@@ -248,6 +251,8 @@ augroup latex_macros " {
     autocmd FileType tex :nnoremap <leader>v :LatexView<CR>
     " open/close Table of Contents
     "autocmd FileType tex :nnoremap <leader>t :LatexTOCToggle<CR>
+    " open logfile for deBugging, TODO
+    " autocmd FileType tex :nnoremap <leader>B :vs serverlist()[0].log <CR>
     function! Synctex()
             " remove 'silent' for debugging
             execute "silent !zathura --synctex-forward " . line('.') . ":" . col('.') . ":" . bufname('%') . " " . g:syncpdf
