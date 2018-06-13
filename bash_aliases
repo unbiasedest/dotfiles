@@ -55,3 +55,6 @@ alias texplots='cd ~/ownCloud/university/studienarbeit/texplots'
 alias vicsv='vi files.txt && rfilename.sh files.txt && vi *.vcsv'
 alias viserver='vim --servername tex '
 # alias zotero='source ~/Zotero_linux-x86_64/zotero &'
+
+# Diplomarbeit
+alias dacd='cd ~/ownCloud/university/diplomarbeit/Ausarbeitung/'
