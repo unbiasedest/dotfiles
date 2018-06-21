@@ -324,7 +324,59 @@ you should place your code here."
           (word (flyspell-get-word)))
       (when (consp word)
         (flyspell-do-correct 'save nil (car word) current-location (cadr word) (caddr word) current-location))))
+  ;;(add-to-list
+   ;;'TeX-expand-list
+   ;;(list "%(extraopts)"
+         ;;(lambda nil TeX-command-extra-options)))
+  (with-eval-after-load 'persp-mode
+    (spacemacs|define-custom-layout
+     "@da-bib" :binding "b"
+                  :body
+                  (find-file "~/ownCloud/university/diplomarbeit/Ausarbeitung/bib/Exported Items.bib")
+                  (split-window-right-and-focus)
+                  (find-file "~/ownCloud/university/diplomarbeit/Ausarbeitung/bib/diplomarbeit.bib")
+                  (winum-select-window-1))
+    (spacemacs|define-custom-layout
+        "@da-style" :binding "s"
+        :body
+        (find-file "~/ownCloud/university/diplomarbeit/Ausarbeitung/symbolmacros_da.sty")
+        (split-window-right-and-focus)
+        (find-file "~/ownCloud/university/diplomarbeit/Ausarbeitung/mystyle_da.sty")
+        (winum-select-window-1))
+    (spacemacs|define-custom-layout
+        "@da-text" :binding "t"
+        :body
+        (find-file "~/ownCloud/university/diplomarbeit/Ausarbeitung/diplomarbeit.tex")
+        )
+
+    (spacemacs|define-custom-layout
+     "@example" :binding "x"
+                :body
+                ;; Open files left to right
+                (find-file "/home/MCHerb/tmp") ;; col 1
+                (split-window-right-and-focus)
+                (find-file "/home/MCHerb/tmp/test.lisp") ;; col 2
+                (split-window-right-and-focus)
+                (find-file "/home/MCHerb/tmp/test.lisp") ;; col 3
+                ;; Create rows, working way back to maintain numbering for jumping
+                (split-window-below-and-focus)
+                (switch-to-buffer "*scratch*" nil t)
+                (setf (point) 0)
+                (insert "This is your scratch buffer!\n")
+
+                (winum-select-window-2)
+                (split-window-below-and-focus)
+                (find-file "/home/MCHerb/tmp/test.lisp")
+                (split-window-below-and-focus)
+                (find-file "/home/MCHerb/tmp/test.lisp")
+
+                (winum-select-window-1)
+                (split-window-below-and-focus)
+                (find-file "/home/MCHerb/tmp/test.lisp")
+
+                (winum-select-window-1)))
  )
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

@@ -58,3 +58,4 @@ alias viserver='vim --servername tex '
 
 # Diplomarbeit
 alias dacd='cd ~/ownCloud/university/diplomarbeit/Ausarbeitung/'
+alias dabib='cd ~/ownCloud/university/diplomarbeit/Ausarbeitung/ && biber diplomarbeit'
