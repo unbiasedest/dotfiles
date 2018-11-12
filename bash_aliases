@@ -9,6 +9,7 @@ alias a='alias'
 alias llg='ll | grep' # grep ll output
 alias aedit='vi ~/dotfiles/bash_aliases'
 alias asource='source ~/dotfiles/bash_aliases'
+alias cddf='cd ~/dotfiles'
 alias rm="rm -i" # Confirm file removal
 alias ping='ping -c 5'      # Pings with 5 packets, not unlimited
 alias df='df -h'            # Disk free, in gigabytes, not bytes
