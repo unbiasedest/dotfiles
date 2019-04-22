@@ -226,6 +226,24 @@ au FileType python setlocal formatprg=autopep8\ -
 "format whole file with autopep8
 autocmd FileType python :nnoremap <leader>i gggqG
 
+"PERL
+" autoformat buffer using perltidy
+"define :Tidy command to run perltidy on visual selection || entire buffer"
+command -range=% -nargs=* Tidy <line1>,<line2>!perltidy
+
+"run :Tidy on entire buffer and return cursor to (approximate) original position"
+fun DoTidy()
+    let l = line(".")
+    let c = col(".")
+    :Tidy
+    call cursor(l, c)
+endfun
+
+"shortcut for normal mode to run on entire buffer then return to current line"
+au Filetype perl nnoremap <leader>f :call DoTidy()<CR>
+
+"shortcut for visual mode to run on the the current visual selection"
+au Filetype perl vnoremap <leader>f :Tidy<CR>
 
 "LATEX
 " change default Tex filetype

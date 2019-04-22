@@ -31,6 +31,8 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
+# start firefox 
+bindsym $mod+w exec firefox
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -75,7 +77,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -89,12 +91,18 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+#
+#custom variables for workspaces
+set $ws1 "1:Web"
+set $ws2 "2:Music"
+set $ws3 "3:Conf"
+set $ws4 "4:Comm"
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -102,11 +110,12 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
+
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
@@ -208,12 +217,18 @@ exec synclient TapButton3=2
 exec --no-startup-id gnome-settings-daemon
 # network
 exec --no-startup-id nm-applet
+exec --no-startup-id owncloud
 # power manager for screen brightness control
 exec --no-startup-id xfce4-power-manager
 # compton to avoid window tearing
 exec --no-startup-id compton --config ~/.config/compton.conf -b
 # custom startup apps
 # TODO
-exec --no-startup-id npm start ~/wire-desktop/start 
-exec --no-startup-id Telegram
-exec --no-startup-id signal-desktop
+# exec --no-startup-id firefox
+# for_window [class='Firefox'] move container to workspace $ws1
+# exec --no-startup-id Telegram
+# for_window [class='TelegramDesktop'] move container to $ws4
+# exec --no-startup-id npm start ~/wire-desktop/start
+# for_window [class='Wire'] move container to $ws4
+# exec --no-startup-id signal-desktop
+# for_window [class='Signal'] move container to $ws4

@@ -6,6 +6,7 @@ export PATH=$PATH:$HOME/ownCloud/scripts
 export PYTHONPATH=$PYTHONPATH:$HOME/ownCloud/university/studienarbeit/texplots:$HOME/oo-design/src
 export QEMU_AUDIO_DRV=alsa
 export KEYTIMEOUT=1
+export GOOGLE_APPLICATION_CREDENTIALS="/home/martin/PycharmProjects/YT/YTD/My Project 48673-a134ca4b1ed3.json"
 
 # The following lines were added by compinstall
 
@@ -178,4 +179,20 @@ ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=orange
 ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=009
 ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=cyan
 ZSH_HIGHLIGHT_STYLES[assign]=none
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/martin/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/martin/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/martin/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/martin/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
